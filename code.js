@@ -1,10 +1,11 @@
 let myToDo = [];
 
 let ui = {
-    formField: $("field"),
+    formField: $("#field"),
 }
 
 function render(items) {
+    $("#list").empty();
     for (let i = 0; i < items.length; i++) {
         let itemHTML = `
         <li data-pos="${i}" class="${items[i].done ? 'done' : ''}">
@@ -18,13 +19,18 @@ function render(items) {
 $("form").submit( (e)=> {
     e.preventDefault();
     let item = {
-        text: "",
+        text: String(ui.formField.val()),
         done: false,
     }
-    
-    item.text = String(ui.formField.val());
     myToDo.push(item);
     render(myToDo);
 });
+$("#list").on('click', '.delete', (event) => {
+    let pos = $(event.target).closest('li').attr('data-pos');
+    myToDo.splice(pos, 1);
+    render(myToDo);
+});
 
-render(myToDo);
+$(".toggle").on('click', () => {
+    
+});
