@@ -1,19 +1,24 @@
-let myToDo = [];
+let myToDo = [
+    {
+        text: "hej",
+        done: false,
+    },
+    {
+        text: "där",
+        done: false,
+    }
+];
 
-let item = {
-    text: "",
-    done: false,
-}
-
-let itemHTML = `
-  <li data-pos="${i}" class="${item[i].done ? 'done' : ''}">
-    <span class="toggle">${item[i].text}</span>
-    <button class="delete">X</button>
-  </li>
-`;
-
-function render (myToDo){
-    for(let i in myToDo){
+function render(items) {
+    for (let i = 0; i < items.length; i++) {
+        let itemHTML = `
+        <li data-pos="${i}" class="${items[i].done ? 'done' : ''}">
+          <span class="toggle">${items[i].text}</span>
+          <button class="delete">X</button>
+        </li>
+      `;
         $("#list").append(itemHTML)
     }
 }
+
+render(myToDo);
