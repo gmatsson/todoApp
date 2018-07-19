@@ -1,13 +1,8 @@
-let myToDo = [
-    {
-        text: "hej",
-        done: false,
-    },
-    {
-        text: "där",
-        done: false,
-    }
-];
+let myToDo = [];
+
+let ui = {
+    formField: $("field"),
+}
 
 function render(items) {
     for (let i = 0; i < items.length; i++) {
@@ -20,5 +15,16 @@ function render(items) {
         $("#list").append(itemHTML)
     }
 }
+$("form").submit( (e)=> {
+    e.preventDefault();
+    let item = {
+        text: "",
+        done: false,
+    }
+    
+    item.text = String(ui.formField.val());
+    myToDo.push(item);
+    render(myToDo);
+});
 
 render(myToDo);
